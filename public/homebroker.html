@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Broker - Ibovespa</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@latest"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Adiciona os ícones do Font Awesome -->
+    </head>    
+    <body>
+        <div id="message-container"></div>
+
+
+<!-------------------------------------------SIDEBAR----------------------------------------------------->
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center py-3">
+        <div id="sidebar" class="sidebar">
+           <a class="nav-link" href="#" data-target="principal-content">
+             <img src="./img/logo.jpg" alt="Logo" class="logo">
+            </a>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="charts">
+                        <i class="fas fa-chart-pie"></i> Gráficos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="trading">
+                        <i class="fas fa-hand-holding-usd"></i> Compra e Venda
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="history">
+                        <i class="fas fa-history"></i> Histórico
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="quote_grid">
+                        <i class="fas fa-chart-line"></i></i> Grade de cotações 
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="coins">
+                        <i class="fas fa-coins"></i> Moedas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="finance">
+                        <i class="fas fa-chart-bar"></i> Taxas e Índices
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-target="FIIs">
+                        <i class="fas fa-building"></i> FIIs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="exit-button">
+                        <i class="fas fa-door-open"></i> Sair
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<!-----------------------------------------TELA INICIAL-------------------------------------------------->    
+    <div id="principal-content" class="content-card active">
+        <div id="home" class="home-container">
+            <div class="welcome-section">
+            <div id="news-section" class="news-section">
+                <div class="header__home header__principal">
+                <h3> <br> Últimas Notícias do Mercado Financeiro <br> <br></h3>
+                </div>
+                <div id="news-container" class="news-container">
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+
+<!--------------------------------------EXIBIÇÃO DE GRÁFICOS--------------------------------------------->
+    <div id="main-content" class="main-content">
+            <div id="charts" class="content-card">
+                <div class="container mt-4">
+                    <div class="header__principal">
+                    <h3>Gráficos</h3>
+                    </div>
+                    <h3> <br> <br> </h3>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="stock-select">Escolha uma ação:</label>
+                            <div class="custom-select-wrapper">
+                            <select id="stock-select" class="form-control">
+                                <option value="PETR4" > Petrobras PN (PETR4)</option>
+                                <option value="VALE3" > Vale ON (VALE3)</option>
+                                <option value="ITUB4" > Itaú Unibanco PN (ITUB4)</option>
+                                <option value="B3SA3" > B3 ON (B3SA3)</option>
+                                <option value="BBAS3" > Banco do Brasil ON (BBAS3)</option>
+                                <option value="ABEV3" > Ambev ON (ABEV3)</option>
+                                <option value="MGLU3" > Magazine Luiza ON (MGLU3)</option>
+                                <option value="WEGE3" > WEG ON (WEGE3)</option>
+                                <option value="RENT3" > Localiza ON (RENT3)</option>
+                                <option value="ITSA4" > Itaúsa PN (ITSA4)</option>
+                                <option value="AMER3" > Americanas S.A. (AMER3)</option>
+                                <option value="AZUL4" > Azul S.A. (AZUL4)</option>
+                                <option value="BBDC4" > Bco Bradesco S.A. (BBDC4)</option>
+                                <option value="CRFB3" > Atacadão S.A. (CRFB3)</option>
+                                <option value="ELET3" > Centrais Elet Bras S.A. Eletrobras (ELET3)</option>
+                                <option value="CIEL3" > Cielo S.A. (CIEL3)</option>
+                                <option value="COGN3" > Cogna Educação (COGN3)</option>
+                                <option value="SBSP3" > Cia Saneamento Basico Est Sao Paulo (SBSP3)</option>
+                                <option value="CMIG3" > Cia Energetica De Minas Gerais Cemig (CMIG3)</option>
+                                <option value="CSNA3" > Cia Siderurgica Nacional (CSNA3)</option>
+                                <option value="CVCB3" > Cvc Brasil Operadora E Agência De Viagens S.A. (CVCB3)</option>
+                                <option value="CYRE3" > Cyrela Brazil Realty S.A.Empreend E Part (CYRE3)</option>
+                                <option value="GFSA3" > GafiSA S.A. (GFSA3)</option>
+                                <option value="GGBR3" > Gerdau S.A. (GGBR3)</option>
+                                <option value="GOLL4" > Gol Linhas Aereas Inteligentes S.A. (GOLL4)</option>
+                                <option value="IRBR3" > Irb Brasil Resseguros S.A. (IRBR3)</option>
+                                <option value="JBSS3" > Jbs S.A. (JBSS3)</option>
+                                <option value="BEEF3" > Minerva S.A. (BEEF3)</option>
+                                <option value="OIBR3" > Oi S.A. (OIBR3)</option>
+                                <option value="PRIO3" > Petro Rio S.A. (PRIO3)</option>
+                                <option value="TASA3" > Taurus Armas S.A. (TASA3)</option>
+                                <option value="USIM3" > Usinas Sid De Minas Gerais S.A. Usiminas (USIM3)</option>
+                            </select>
+                            <input type="hidden">
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <button id="add-stock-btn" class="btn btn-primary btn-add-stock">Adicionar Ação</button>
+                        </div>
+                    </div>
+    
+                    <div id="stocks-container" class="row">
+                    </div>
+                </div>
+            </div>
+
+
+<!-------------------------------------------COMPRAS E VENDAS----------------------------------------------> 
+        <div id="trading" class="content-card">
+            <div class="container mt-5">
+                <div class="header__principal">
+                <h3>Compra e Venda</h3>
+                </div>
+                <h3> <br> <br> </h3>
+                <div id="portfolio-container">
+                    <table class="table table-dark table-striped table-portfolio">
+                        <thead>
+                            <tr>
+                                <th>Ação</th>
+                                <th>Quantidade</th>
+                                <th>Preço Médio</th>
+                                <th>Valor Atual</th>
+                                <th>Total Gasto (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="portfolio-body" class="portfolio-body">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="portfolio-stock-select">Escolha uma ação para comprar/vender:</label>
+                        <select id="portfolio-stock-select" class="form-control">
+                            <option value="PETR4" > Petrobras PN (PETR4)</option>
+                            <option value="VALE3" > Vale ON (VALE3)</option>
+                            <option value="ITUB4" > Itaú Unibanco PN (ITUB4)</option>
+                            <option value="B3SA3" > B3 ON (B3SA3)</option>
+                            <option value="BBAS3" > Banco do Brasil ON (BBAS3)</option>
+                            <option value="ABEV3" > Ambev ON (ABEV3)</option>
+                            <option value="MGLU3" > Magazine Luiza ON (MGLU3)</option>
+                            <option value="WEGE3" > WEG ON (WEGE3)</option>
+                            <option value="RENT3" > Localiza ON (RENT3)</option>
+                            <option value="ITSA4" > Itaúsa PN (ITSA4)</option>
+                            <option value="AMER3" > Americanas S.A. (AMER3)</option>
+                            <option value="AZUL4" > Azul S.A. (AZUL4)</option>
+                            <option value="BBDC4" > Bco Bradesco S.A. (BBDC4)</option>
+                            <option value="CRFB3" > Atacadão S.A. (CRFB3)</option>
+                            <option value="ELET3" > Centrais Elet Bras S.A. Eletrobras (ELET3)</option>
+                            <option value="CIEL3" > Cielo S.A. (CIEL3)</option>
+                            <option value="COGN3" > Cogna Educação (COGN3)</option>
+                            <option value="SBSP3" > Cia Saneamento Basico Est Sao Paulo (SBSP3)</option>
+                            <option value="CMIG3" > Cia Energetica De Minas Gerais Cemig (CMIG3)</option>
+                            <option value="CSNA3" > Cia Siderurgica Nacional (CSNA3)</option>
+                            <option value="CVCB3" > Cvc Brasil Operadora E Agência De Viagens S.A. (CVCB3)</option>
+                            <option value="CYRE3" > Cyrela Brazil Realty S.A.Empreend E Part (CYRE3)</option>
+                            <option value="GFSA3" > GafiSA S.A. (GFSA3)</option>
+                            <option value="GGBR3" > Gerdau S.A. (GGBR3)</option>
+                            <option value="GOLL4" > Gol Linhas Aereas Inteligentes S.A. (GOLL4)</option>
+                            <option value="IRBR3" > Irb Brasil Resseguros S.A. (IRBR3)</option>
+                            <option value="JBSS3" > Jbs S.A. (JBSS3)</option>
+                            <option value="BEEF3" > Minerva S.A. (BEEF3)</option>
+                            <option value="OIBR3" > Oi S.A. (OIBR3)</option>
+                            <option value="PRIO3" > Petro Rio S.A. (PRIO3)</option>
+                            <option value="TASA3" > Taurus Armas S.A. (TASA3)</option>
+                            <option value="USIM3" > Usinas Sid De Minas Gerais S.A. Usiminas (USIM3)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="quantity-input">Quantidade:</label>
+                        <input type="number" id="quantity-input" class="form-control" placeholder="Digite a quantidade">
+                        <button id="buy-stock-btn" class="btn btn-success mt-3">Comprar</button>
+                        <button id="sell-stock-btn" class="btn btn-danger mt-3">Vender</button>
+                    </div>
+                </div>
+            </div>
+
+                 <div id="chart-container">
+                    <canvas id="portfolio-pie-chart"></canvas>
+                </div>            
+                <div id="total-gasto-container">
+                    <h3>Total Gasto: <span id="total-gasto">R$ 0,00</span></h3>
+                </div>    
+            </div>
+
+
+<!-------------------------------------HISTÓRICO DE COMPRAS E VENDAS------------------------------------->
+        <div id="history" class="content-card">
+            <div class="container">
+                <div id="transaction-history-container" style="display: none;">
+                    <div class="header__principal">
+                        <h3>Histórico de Transações</h3>
+                        </div>
+                        <h3> <br> <br> </h3>
+                        <div id="no-transactions-message" style="display: none;">
+                            <p>Você ainda não fez nenhuma transação.</p>
+                        </div>
+                    <table id="transaction-history-table" class="table table-striped transaction-history-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Data</th>
+                                <th>Ação</th>
+                                <th>Quantidade</th>
+                                <th>Preço</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-history-body" class="transaction-history-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
+        </div>
+
+
+<!------------------------------------------GRADE DE COTAÇÕES-------------------------------------------->
+        <div id="quote_grid" class="content-card">
+            <div class="header__principal">
+                <h3>Cotações em Tempo Real</h3>
+                </div>
+                <h3> <br> </h3>
+            <div id="quotes-container"></div>
+        </div>
+
+
+<!----------------------------------------------MOEDAS--------------------------------------------------->
+            <div id="coins" class="content-card">
+                <div class="header__principal">
+                    <h3>Moedas</h3>
+                    </div>
+                    <h3> <br> </h3>
+                    <div id="coins-list"></div>
+            </div>
+        
+
+<!-------------------------------------------TAXAS E ÍNDICES--------------------------------------------->
+            <div id="finance" class="content-card">
+                <div id="indices-container">
+                    <div class="header__principal">
+                        <h3>Índices</h3>
+                        </div>
+                        <h3> <br> </h3>
+                    <div id="indices-list"></div>
+                    <div id="taxas-list" class="header__principal"></div>
+                </div>
+            </div>
+
+
+<!-----------------------------------------------FIIs---------------------------------------------------->
+    <div id="FIIs" class="content-card">
+        <div class="header__principal">
+            <h3>Fundos de Investimento Imobiliário (FIIs)</h3>
+        </div>
+
+        <div class="fiis-content">
+            <table id="fiis-table" class="fiis-table">
+                <thead>
+                    <tr>
+                        <th>Fundo</th>
+                        <th>Nome</th>
+                        <th>Setor</th>
+                        <th>Equity</th>
+                        <th>Qtd de Cotas</th>
+                        <th>Valor Patrimonial por Cota</th>
+                        <th>P/B Ratio</th>
+                        <th>Yield 12M (%)</th>
+                        <th>Yield 12M Total (R$)</th>
+                    </tr>
+                </thead>
+                <tbody id="fiis-table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+  </div> 
+</div>    
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
+    <script src="script.js"></script>
+</body>
+    

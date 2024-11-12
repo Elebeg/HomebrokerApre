@@ -1,0 +1,19 @@
+{
+  "name": "homebroker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chart.js": "^4.4.3",
+    "chartjs": "^0.3.24",
+    "chartjs-chart-financial": "^0.2.1",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0"
+  }
+}
